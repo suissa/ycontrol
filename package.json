@@ -4,15 +4,12 @@
   "description": "Sistema de controle financeiro individual",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-},
-"scripts": {
-  "start": "nodemon app"
-},
+    "start": "nodemon app"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luzmoraes/ycontrol.git"
-},
+  },
   "keywords": [
     "financeiro",
     "controle",
@@ -23,12 +20,13 @@
   "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/luzmoraes/ycontrol/issues"
-},
+  },
   "homepage": "https://github.com/luzmoraes/ycontrol#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
     "express": "^4.13.4",
+    "file-system": "^2.2.1",
     "mongoose": "^4.5.0"
   }
 }

@@ -10,21 +10,25 @@ const port = process.env.PORT || 7200;
 
 const environment = process.env.NODE_ENV;
 
-let api = {};
-
-api.users = require('./modules/users/routes');
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(compress());            // Compress response data with gzip
-// app.use(logger('dev'));
-// app.use(favicon(__dirname + '/favicon.ico'));
-// app.use(cors());                // enable ALL CORS requests
-// app.use(errorHandler.init);
 
-app.use('/api/users', api.users);
+// let api = {};
+// api.users = require('./modules/users/routes');
+// app.use('/api/users', api.users);
 
-//routes = require('./routes/index')(app);
+/* Cria as rotas dinamicamente a partir dos módulos */
+let api = {};
+let modules = require('./getModules');
+
+const createRoutes = (element, index) => {
+    api[element] = require('./modules/'+element+'/routes');
+    app.use('/api/'+element, api[element]);
+};
+
+modules.forEach(createRoutes);
+/* Cria as rotas dinamicamente a partir dos módulos */
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
